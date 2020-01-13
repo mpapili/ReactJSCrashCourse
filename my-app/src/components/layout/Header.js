@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Header() {
     // this is like having a Render() method:
     return (
         <header style={headerStyle}>
             <h1>TodoList</h1>
+            <Link to="/" style={linkStyle}>Home | </Link>
+            <Link to="/about" style={linkStyle}>About</Link>
         </header>
     )
 }
@@ -14,6 +17,11 @@ const headerStyle = {
     color: '#fff',
     textAlign: 'center',
     padding: '10px'
+}
+
+const linkStyle = {
+    color: '#fff',
+    textDecoration: 'none'
 }
 
 export default Header // so we can import in app.js

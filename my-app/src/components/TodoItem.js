@@ -15,19 +15,32 @@ export class TodoItem extends Component {
     }
     
     render() {
+        
         // pull our id and title as variables!
         const { id, title } = this.props.todo;
+        
+        // JSX to return
         return (
             <div style={ this.getStyle() }>
                 <p>
                     <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/> {' '}
-                    { this.props.todo.title }
+                    { title }
+                    <button onClick={this.props.delTodo.bind(this, id)} style={btnStyle}> x </button>
                 </p>
             </div>
         )
     }
 }
 
+const btnStyle = {
+    background: '#ff0000',
+    color: '#fff',
+    border: 'none',
+    padding: '5px 10px',
+    borderRadius: '50%', // rounded-button
+    cursor: 'pointer',
+    float: 'right'
+}
 
 // Proptypes
 TodoItem.propTypes = {

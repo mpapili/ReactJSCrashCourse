@@ -34,12 +34,20 @@ class App extends Component {
             return todo;
         }) }); // ugly amount of closing brackets
     }
+    
+    // Delete Todo
+    delTodo = (id) => {
+        
+        // filter out id's 
+        this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] })
+
+    }
 
     render() {
         return (
             <div className="App">
                 <h1> My App! </h1>
-                <Todos todos={this.state.todos} markComplete={this.markComplete} />
+                <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
             </div>
         );
         

@@ -36,23 +36,23 @@ class App extends Component {
     // Delete Todo
     delTodo = (id) => {
         
-        // filter out id's 
-        this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] })
-
+        // using backticks so we can insert a variable!
+        axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+          .then(res => this.setState({todos: [...this.state.todos.filter( todo => todo.id !== id)]}))
     }
     
     // Add Todo (accepts title)
     addTodo = (title) => {
         
         // create new todo to add
-        const newTodo = {
-            id: uuid.v4(), // hard-coded for now
-            title: title,
-            completed: false
-        }
         
-        // use spread-operator! return 
-        this.setState({ todos: [...this.state.todos, newTodo] })
+        axios.post('https://jsonplaceholder.typicode.com/todos', {
+            title: title, 
+            completed: false
+        })
+          .then(res => this.setState({ todos:
+                                     [...this.state.todos, res.data]}));
+        
     }
 
     // return our actual JSX
